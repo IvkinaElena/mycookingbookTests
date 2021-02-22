@@ -145,7 +145,7 @@ public class NewRecipePage extends Page{
     @Step("Открываем выпадающий список для выбора категории")
     public NewRecipePage clickCategorySelect() {
         //пришлось добавить явное ожидание, т.к. не успевает загрузиться список категорий
-        //что вызывает ошибку Cannot read property 'map'of null - белый экран
+        //что вызывает ошибку Cannot read property 'map' of null - белый экран
         try {
             MILLISECONDS.sleep(500);
         } catch (InterruptedException e) {

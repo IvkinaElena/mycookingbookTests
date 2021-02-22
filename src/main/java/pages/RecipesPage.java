@@ -94,6 +94,54 @@ public class RecipesPage extends Page{
     private WebElement profileLink;
 
     /**
+     * Определение локатора названия фильтра по категории
+     */
+    @FindBy(xpath = "//div[contains(text(), 'Категория блюд')]")
+    private WebElement categoryFilter;
+
+    /**
+     * Определение локатора одной из категорий блюд (супы и бульоны)
+     */
+    @FindBy(xpath = "//span[contains(text(), 'Супы')]")
+    private WebElement categoryItem;
+
+    /**
+     * Определение локатора названия фильтра по кухне
+     */
+    @FindBy(xpath = "//div[contains(text(), 'Кухни')]")
+    private WebElement countryFilter;
+
+    /**
+     * Определение локатора одной из кухни(Абхазская)
+     */
+    @FindBy(xpath = "//span[contains(text(), 'Абхазская')]")
+    private WebElement countryItem;
+
+    /**
+     * Определение локатора названия фильтра по характеристике
+     */
+    @FindBy(xpath = "//div[contains(text(), 'Характеристики')]")
+    private WebElement characteristicsFilter;
+
+    /**
+     * Определение локатора одной из характеристики (Мясное блюдо)
+     */
+    @FindBy(xpath = "//span[contains(text(), 'Мясное')]")
+    private WebElement characteristicsItem;
+
+    /**
+     * Определение локатора названия фильтра по времени приема пищи
+     */
+    @FindBy(xpath = "//div[contains(text(), 'Время приема')]")
+    private WebElement timeToEatFilter;
+
+    /**
+     * Определение локатора одного из времени приема пищи (Завтрак)
+     */
+    @FindBy(xpath = "//span[contains(text(), 'Завтрак')]")
+    private WebElement timeToEatItem;
+
+    /**
      * метод для перехода на основную страницу
      */
     public void openMainPage() {
@@ -141,7 +189,7 @@ public class RecipesPage extends Page{
     }
 
     @Step("Проверяем отображение новой группы")
-    public boolean assertCreateNewGroup(String title) {
+    public boolean newGroupIsDisplayed(String title) {
         for (WebElement elem : listGroups) {
             if (elem.getText().equals(title));
                 return true;
@@ -192,5 +240,45 @@ public class RecipesPage extends Page{
     @Step("Нажимаем ссылку для перехода в натсройки профиля")
     public  void clickProfileLink() {
         profileLink.click();
+    }
+
+    @Step("Нажимаем на фильтр Категория блюд")
+    public void clickCategoryFilter() {
+        categoryFilter.click();
+    }
+
+    @Step("Проверяем, что список с Категориями развернут")
+    public boolean categoryItemIsExists() {
+       return categoryItem.isDisplayed();
+    }
+
+    @Step("Нажимаем на фильтр Кухни")
+    public void clickCountryFilter() {
+        countryFilter.click();
+    }
+
+    @Step("Проверяем, что список Кухни развернут/свернут")
+    public boolean countryItemIsExists() {
+        return countryItem.isDisplayed();
+    }
+
+    @Step("Нажимаем на фильтр Характеристики")
+    public void clickCharacteristicsFilter() {
+        characteristicsFilter.click();
+    }
+
+    @Step("Проверяем, что список Характеристики развернут/свернут")
+    public boolean characteristicsItemIsExists() {
+        return characteristicsItem.isDisplayed();
+    }
+
+    @Step("Нажимаем на фильтр Время приема пищи")
+    public void clickTimeToEatFilter() {
+        timeToEatFilter.click();
+    }
+
+    @Step("Проверяем, что список Время приема пищи развернут/свернут")
+    public boolean timeToEatItemIsExists() {
+        return timeToEatItem.isDisplayed();
     }
 }

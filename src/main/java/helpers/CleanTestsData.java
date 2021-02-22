@@ -1,6 +1,8 @@
 package helpers;
 
 import java.util.*;
+
+import io.restassured.http.ContentType;
 import org.openqa.selenium.WebDriver;
 import parametrs.Parameters;
 import static io.restassured.RestAssured.given;
@@ -23,7 +25,8 @@ public class CleanTestsData {
         for(Object recipesId: listOfRecipesID) {
            given()
                    .cookies(getMyCookies())
-                   .header("Accept", "application/json")
+                   .accept(ContentType.JSON)
+                   //.header("Accept", "application/json")
                    .when().delete(Parameters.BASE_URL + "api/recipes/" + recipesId)
                    .then().statusCode(204);
         }

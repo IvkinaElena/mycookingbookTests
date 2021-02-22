@@ -56,7 +56,7 @@ public class MainPageTests {
         recipesPage.clickAddGroupBtn()
                    .inputTitleGroup(testTitleGroup)
                    .clickAddBtn();
-        assertTrue(recipesPage.assertCreateNewGroup(testTitleGroup));
+        assertTrue(recipesPage.newGroupIsDisplayed(testTitleGroup));
     }
 
     @Test
@@ -81,9 +81,49 @@ public class MainPageTests {
         assertTrue(profileSettingsPage.profileSettingsTitleIsExists());
     }
 
+    @Test
+    @Description(value = "Тест для проверки разворачивания/своачивания фильтра Категория блюд")
+    public void testOpenCategoryFilter() {
+        recipesPage.clickCategoryFilter();
+        assertTrue(recipesPage.categoryItemIsExists());
+        recipesPage.clickCategoryFilter();
+        assertTrue(!recipesPage.categoryItemIsExists());
+    }
+
+    @Test
+    @Description(value = "Тест для проверки разворачивания/своачивания фильтра Кухни")
+    public void testOpenCountryFilter() {
+        recipesPage.clickCountryFilter();
+        assertTrue(recipesPage.countryItemIsExists());
+        recipesPage.clickCountryFilter();
+        assertTrue(!recipesPage.countryItemIsExists());
+    }
+
+    @Test
+    @Description(value = "Тест для проверки разворачивания/своачивания фильтра Характеристики")
+    public void testOpenCharacteristicsFilter() {
+        recipesPage.clickCharacteristicsFilter();
+        assertTrue(recipesPage.characteristicsItemIsExists());
+        recipesPage.clickCharacteristicsFilter();
+        assertTrue(!recipesPage.characteristicsItemIsExists());
+    }
+
+    @Test
+    @Description(value = "Тест для проверки разворачивания/своачивания фильтра Вемя приема пищи")
+    public void testOpenTimeToEatFilter() {
+        recipesPage.clickTimeToEatFilter();
+        assertTrue(recipesPage.timeToEatItemIsExists());
+        recipesPage.clickTimeToEatFilter();
+        assertTrue(!recipesPage.timeToEatItemIsExists());
+
+    }
+
     @AfterEach
     public void backInMainPage() {
         recipesPage.clickLogo();
+        if (!recipesPage.filterPanelIsExists()) {
+            recipesPage.clickPanelFoldingBtn();
+        }
     }
 
     @AfterAll
